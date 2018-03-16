@@ -2,7 +2,7 @@
 //  ViewController.m
 //  SimpleCalculator
 //
-//  Created by Nyaa_Mi on 2018/3/13.
+//  Created by Nyaa_Mi on 2018/2/28.
 //  Copyright © 2018年 Nyaa_Mi. All rights reserved.
 //
 
@@ -78,26 +78,26 @@
     
     
     
-    UIButton *clearBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 130, (WIDTH-55)/4, (WIDTH-55)/4)];
+    UIButton *clearBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 130, (WIDTH-55)/4, (WIDTH-55)/4)];       //设置清除键坐标位置
     
     [clearBtn setTitle:@"C" forState:UIControlStateNormal];
    
     
     [clearBtn setImage:[UIImage imageNamed:@"ccc01.png"] forState:UIControlStateNormal];
-    clearBtn.tag = 1;
+    clearBtn.tag = 1;       //设置清除键tag为1
     [clearBtn addTarget:self action:@selector(deleteInfo:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearBtn];
     
-    UIButton *deleteBtn = [[UIButton alloc]initWithFrame:CGRectMake(WIDTH-100, 130, (WIDTH-55)/4, (WIDTH-55)/4)];
-    deleteBtn.tag = 2;
+    UIButton *deleteBtn = [[UIButton alloc]initWithFrame:CGRectMake(WIDTH-100, 130, (WIDTH-55)/4, (WIDTH-55)/4)];       //设置删除键坐标位置
+    deleteBtn.tag = 2;      //设置删除键tag为2
     
     [deleteBtn setTitle:@"<-" forState:UIControlStateNormal];
    
     
-    [deleteBtn setImage:[UIImage imageNamed:@"t02.png"] forState:UIControlStateNormal];
-    [deleteBtn setImage:[UIImage imageNamed:@"t01.png"] forState:UIControlStateHighlighted];
+    [deleteBtn setImage:[UIImage imageNamed:@"t02.png"] forState:UIControlStateNormal];     //设置删除键图案
+    [deleteBtn setImage:[UIImage imageNamed:@"t01.png"] forState:UIControlStateHighlighted];        //设置删除键图案
     [deleteBtn addTarget:self action:@selector(deleteInfo:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:deleteBtn];
+    [self.view addSubview:deleteBtn];       //添加删除键到视窗
     
 //定义一个数组，使按钮与对应的图片关联
     NSArray *array = [NSArray arrayWithObjects:@"1",@"2",@"3",@"+",@"4",@"5",@"6",@"-",@"7",@"8",@"9",@"x",@".",@"0",@"=",@"/", nil];
@@ -112,7 +112,7 @@
         [btn setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
        
         
-        [btn addTarget:self action:@selector(manage:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(manage:) forControlEvents:UIControlEventTouchUpInside];        //按键响应事件
         [self.view addSubview:btn];
 }
     flag = NO;
@@ -120,7 +120,8 @@
     
 //运算逻辑
 }
--(void)deleteInfo:(UIButton *)btn{
+
+-(void)deleteInfo:(UIButton *)btn{      //判断button是否触发了清除键，如果是，则输入框显示"0"
     if (btn.tag == 1) {
         _label.text = @"0";
         a = 0;
@@ -135,7 +136,9 @@
         _label.text = [_label.text substringToIndex:_label.text.length-1];
     }
 }
--(void)manage:(UIButton *)btn{
+
+
+-(void)manage:(UIButton *)btn{      //判断输入的运算符,并进行记录
     
     if (btn.tag%4 == 0||btn.tag == 15) {
         flag = YES;
@@ -189,7 +192,7 @@
             _label.text = [_label.text stringByAppendingFormat:@"%zi",btn.tag - btn.tag/4];
         }
     }else{
-        NSRange range = [_label.text rangeOfString:@"."];
+        NSRange range = [_label.text rangeOfString:@"."];       //判断是否包含小数点
         if (range.location == NSNotFound) {
             _label.text = [_label.text stringByAppendingString:@"."];
         }

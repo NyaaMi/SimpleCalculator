@@ -65,7 +65,7 @@
     
     
     
-    //初始化视图并设置坐标、背景颜色
+    //初始化输入框视图并设置坐标、背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     _label = [[UILabel alloc]initWithFrame:CGRectMake(20, 40, WIDTH - 40, 80)];
     _label.backgroundColor = [UIColor blackColor];
@@ -118,13 +118,13 @@
     flag = NO;
     a = 0;
     
-//加载视图后再进行其它设置
+//运算逻辑
 }
 -(void)deleteInfo:(UIButton *)btn{
     if (btn.tag == 1) {
         _label.text = @"0";
         a = 0;
-        // [result setString:@""];
+       
     }else{
         if (_label.text.length == 1) {
             _label.text = @"0";

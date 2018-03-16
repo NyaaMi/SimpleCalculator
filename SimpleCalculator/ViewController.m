@@ -98,6 +98,8 @@
     [deleteBtn setImage:[UIImage imageNamed:@"t01.png"] forState:UIControlStateHighlighted];
     [deleteBtn addTarget:self action:@selector(deleteInfo:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:deleteBtn];
+    
+//定义一个数组，使按钮与对应的图片关联
     NSArray *array = [NSArray arrayWithObjects:@"1",@"2",@"3",@"+",@"4",@"5",@"6",@"-",@"7",@"8",@"9",@"x",@".",@"0",@"=",@"/", nil];
     NSArray *back01 = @[num101,num201,num301,calj02,num401,num501,num601,caljj02,num701,num801,num901,calc02,caldd,num001,cald02,calcc02];
     NSArray *back02 = @[num102,num202,num302,calj01,num402,num502,num602,caljj01,num702,num802,num902,calc01,caldd,num002,cald01,calcc01];
@@ -112,11 +114,11 @@
         
         [btn addTarget:self action:@selector(manage:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
-        
-    }
+}
     flag = NO;
     a = 0;
-    //加载视图后再进行其它设置
+    
+//加载视图后再进行其它设置
 }
 -(void)deleteInfo:(UIButton *)btn{
     if (btn.tag == 1) {
@@ -155,13 +157,14 @@
                     break;
                 case 4:
                     result  /= [_label.text floatValue];
-                    break;                default:
+                    break;
+                default:
                     
                     break;
     }
             
 }
-        // sw
+        //sw
         if (result > (int)result) {
             _label.text = [NSString stringWithFormat:@"%.2f",result];
         }else{
